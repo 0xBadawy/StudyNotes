@@ -1,7 +1,7 @@
 <div style="text-align: center;">
   <h1>React JS</h1>
+<br>
 </div>
-
 
 ### Create a New Project
 
@@ -22,11 +22,15 @@
    ```
 
 
+
+***
+
 ### Install React Router
 
-```npm install react-router-dom```
+- ```npm install react-router-dom```
 
 
+<br>
 
 > create a new file to use Rounting **AppLayout.jsx**
 
@@ -47,6 +51,7 @@ const AppLayout = () => {
 
 export default AppLayout;
 ```
+<br>
 
 
 ``` JS
@@ -80,8 +85,9 @@ function App() {
 export default App
 ```
 
+<br>
 
-##### Access URL Parameters in Components
+#### Access URL Parameters in Components
 
 
 ```js
