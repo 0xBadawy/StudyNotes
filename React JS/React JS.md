@@ -3,6 +3,11 @@
 <br>
 </div>
 
+
+
+
+
+
 ### Create a New Project
 
 - ```npm create vite@latest my-vite-app```
@@ -25,14 +30,14 @@
 
 ***
 
+
 ### Install React Router
 
 - ```npm install react-router-dom```
 
-
 <br>
 
-> create a new file to use Rounting **AppLayout.jsx**
+#### create a new file to use Rounting **AppLayout.jsx**
 
 ```JS
 // src/AppLayout.jsx
@@ -107,3 +112,77 @@ const ItemDetail = () => {
 
 export default ItemDetail;
 ```
+
+<br><br>
+
+---
+
+## Axios HTTP requests
+
+Install Axios
+
+- ```npm install axios```
+
+
+
+```js
+// src/api.js
+import axios from 'axios';
+
+const api = axios.create({
+  baseURL: 'https://api.example.com',
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer YOUR_TOKEN', // Static token
+    'x-api-key': 'YOUR_API_KEY' // API key
+  }
+});
+
+export default api;
+```
+
+#### Use the Axios Instance in Components
+
+```js
+import React, { useState, useEffect } from 'react';
+import api from './api'; // Import the custom Axios instance
+
+const MyComponent = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    api.get('/data')
+      .then(response => {
+        setData(response.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        setError(error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  return (
+    <div>
+      <h1>Data</h1>
+      <ul>
+        {data.map(item => (
+          <li key={item.id}>{item.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default MyComponent;
+ ```
+
+
+
+
